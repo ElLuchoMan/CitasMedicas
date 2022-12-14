@@ -19,7 +19,7 @@ export class RegistrarComponent implements OnInit {
     {id: 'TI', nombre: 'Tarjeta de identidad'}
   ];
   constructor(private fb: FormBuilder, private router: Router, private consultorioService: ConsultorioService,  private toastr: ToastrService) { }
-  registroUsuariosForm: FormGroup= this.fb.group({
+  registroPacientesForm: FormGroup= this.fb.group({
     nombre: [''],
     apellido: [''],
     tipoDocumento: [''],
@@ -36,29 +36,29 @@ export class RegistrarComponent implements OnInit {
 
   registrarPaciente(){
     const paciente: Paciente ={
-      nombre: this.registroUsuariosForm.get('nombre')?.value,
-      apellido: this.registroUsuariosForm.get('apellido')?.value,
-      tipoDocumento: this.registroUsuariosForm.get('tipoDocumento')?.value,
-      identificacion: this.registroUsuariosForm.get('documento')?.value,
-      telefono: this.registroUsuariosForm.get('telefono')?.value,
-      celular: this.registroUsuariosForm.get('celular')?.value,
-      fechaNacimiento: this.registroUsuariosForm.get('fechaNacimiento')?.value,
-      sexo: this.registroUsuariosForm.get('sexo')?.value,
-      email: this.registroUsuariosForm.get('email')?.value,
+      nombre: this.registroPacientesForm.get('nombre')?.value,
+      apellido: this.registroPacientesForm.get('apellido')?.value,
+      tipoDocumento: this.registroPacientesForm.get('tipoDocumento')?.value,
+      identificacion: this.registroPacientesForm.get('documento')?.value,
+      telefono: this.registroPacientesForm.get('telefono')?.value,
+      celular: this.registroPacientesForm.get('celular')?.value,
+      fechaNacimiento: this.registroPacientesForm.get('fechaNacimiento')?.value,
+      sexo: this.registroPacientesForm.get('sexo')?.value,
+      email: this.registroPacientesForm.get('email')?.value,
       categoria:'',
       estado: 'Activo',
       multa:0,
       historiaMedica: {idHistoria: 0}
     }
-    this.consultorioService.crearContratista(paciente).subscribe(
+    this.consultorioService.crearPacientes(paciente).subscribe(
       (data) => {
         console.log(data);
         this.router.navigate(['/pacientes/registrar']);
         this.toastr.success(`Se ha registrado al paciente ${paciente.nombre}`, '¡HECHO!');
-        // this.registroUsuariosForm.reset();
+        // this.registroPacientesForm.reset();
       },
       (error) => {
-        this.toastr.error(`No se ha podido registrar el usuario ${paciente.nombre}  ${error.error.mensaje}`, '¡ERROR!')
+        this.toastr.error(`No se ha podido registrar el paciente ${paciente.nombre}.  ${error.error.mensaje}`, '¡ERROR!')
       }
     );
   }

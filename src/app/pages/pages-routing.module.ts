@@ -14,6 +14,10 @@ const routes: Routes = [
   { path: 'agendar', loadChildren: () => import('./citas/citas.module').then(m => m.CitasModule) },
 ],
   },
+  {path:'medicos', children: [
+    { path: 'registrar', loadChildren: () => import('./medicos/medicos.module').then(m => m.MedicosModule) },
+  ],
+  },
   { path: '**', redirectTo: 'home' }
 ];
 
