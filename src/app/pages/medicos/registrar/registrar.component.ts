@@ -25,6 +25,19 @@ export class RegistrarComponent implements OnInit {
     { id: 'Nutrición', nombre: 'Nutrición' },
     { id: 'Odontología', nombre: 'Odontología' }
   ];
+  sedes: any = [
+    { id: 'Centro', nombre: 'Centro' },
+    { id: 'Sur', nombre: 'Sur' },
+    { id: 'Norte', nombre: 'Norte' },
+    { id: 'Occidente', nombre: 'Occidente' },
+  ]
+  consultorio:any=[
+    {id:'1',nombre:'1'},
+    {id:'2',nombre:'2'},
+    {id:'3',nombre:'3'},
+    {id:'4',nombre:'4'},
+    {id:'5',nombre:'5'},
+  ]
   constructor(private fb: FormBuilder, private router: Router, private consultorioService: ConsultorioService, private toastr: ToastrService) { }
   registroMedicosForm: FormGroup = this.fb.group({
     nombre: [''],
@@ -35,11 +48,11 @@ export class RegistrarComponent implements OnInit {
     celular: [''],
     fechaNacimiento: [''],
     especialidad: [''],
-    registro:  [''],
-    email:  [''],
-    sexo:  [''],
-    consultorio:  [''],
-    sede: [''],
+    registro: [''],
+    email: [''],
+    sexo: [''],
+    consultorio: [''],//Traer
+    sede: [''],//Traer
 
   });
   ngOnInit(): void {
