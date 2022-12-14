@@ -30,12 +30,16 @@ export class RegistrarComponent implements OnInit {
     nombre: [''],
     apellido: [''],
     tipoDocumento: [''],
-    documento: [''],
+    identificacion: [''],
     telefono: [''],
     celular: [''],
     fechaNacimiento: [''],
-    sexo: [''],
-    email: [''],
+    especialidad: [''],
+    registro:  [''],
+    email:  [''],
+    sexo:  [''],
+    consultorio:  [''],
+    sede: [''],
 
   });
   ngOnInit(): void {

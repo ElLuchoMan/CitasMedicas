@@ -29,11 +29,10 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <select class="form-select" formControlName="tipoDocumento">
-
                                                 <option *ngFor="let tiposDocumento of tiposDocumento"
                                                     value="{{tiposDocumento.id}}">{{tiposDocumento.nombre}}</option>
                                             </select>
-                                            <label class="form-label" for="form3Example4c">Tipo de Documento</label>
+                                            <label class="form-label" for="tiposDocumento">Tipo de Documento</label>
                                         </div>
                                     </div>
 
@@ -48,12 +47,11 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <select class="form-select" formControlName="tipoDocumento">
-
+                                            <select class="form-select" formControlName="especialidad">
                                                 <option *ngFor="let especialidades of especialidades"
                                                     value="{{especialidades.id}}">{{especialidades.nombre}}</option>
                                             </select>
-                                            <label class="form-label" for="form3Example4c">Especialidad</label>
+                                            <label class="form-label" for="especialidades">Especialidad</label>
                                         </div>
                                     </div>
 
@@ -63,6 +61,14 @@
                                             <input type="email" id="email" formControlName="email"
                                                 class="form-control" />
                                             <label class="form-label" for="email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="number" id="registro" formControlName="registro"
+                                                class="form-control" />
+                                            <label class="form-label" for="email">Registro Médico</label>
                                         </div>
                                     </div>
 
