@@ -1,8 +1,10 @@
+import { HistoriaMedica } from "./historiamedica.model";
+
 export interface  Paciente {
   nombre: string;
   apellido: string;
   tipoDocumento: string;
-  documento: number;
+  identificacion: number;
   telefono: number;
   celular: number;
   fechaNacimiento: Date;
@@ -10,4 +12,6 @@ export interface  Paciente {
   email: string;
   estado: string;
   multa: number;
+  categoria: string;
+  historiaMedica: HistoriaMedica;
 }
