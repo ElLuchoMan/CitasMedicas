@@ -54,12 +54,11 @@ export class RegistrarComponent implements OnInit {
       (data) => {
         console.log(data);
         this.router.navigate(['/pacientes/registrar']);
-        this.toastr.success('Paciente creado con éxito', '¡HECHO!');
+        this.toastr.success(`Se ha registrado al paciente ${paciente.nombre}`, '¡HECHO!');
         // this.registroUsuariosForm.reset();
       },
       (error) => {
-        console.log(this.toastr.error(error.error.mensaje, '¡ERROR!'));
-        this.toastr.error(error.error.mensaje, '¡ERROR!');
+        this.toastr.error(`No se ha podido registrar el usuario ${paciente.nombre}  ${error.error.mensaje}`, '¡ERROR!')
       }
     );
   }
