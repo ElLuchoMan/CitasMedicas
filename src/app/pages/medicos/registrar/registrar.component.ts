@@ -74,16 +74,17 @@ export class RegistrarComponent implements OnInit {
       consultorio: this.registroMedicosForm.get('consultorio')?.value,
       sede: this.registroMedicosForm.get('sede')?.value,
     }
-    this.consultorioService.crearMedicos(medico).subscribe(
-      (data) => {
-        console.log(data);
-        this.router.navigate(['/pacientes/registrar']);
-        this.toastr.success(`Se ha registrado al medico ${medico.nombre}`, '¡HECHO!');
-        // this.registroMedicosForm.reset();
-      },
-      (error) => {
-        this.toastr.error(`No se ha podido registrar el medico ${medico.nombre}. ${error.error.mensaje}`, '¡ERROR!')
-      }
-    );
+    console.log(medico);
+    // this.consultorioService.crearMedicos(medico).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.router.navigate(['/pacientes/registrar']);
+    //     this.toastr.success(`Se ha registrado al medico ${medico.nombre}`, '¡HECHO!');
+    //     // this.registroMedicosForm.reset();
+    //   },
+    //   (error) => {
+    //     this.toastr.error(`No se ha podido registrar el medico ${medico.nombre}. ${error.error.mensaje}`, '¡ERROR!')
+    //   }
+    // );
   }
 }
