@@ -12,6 +12,20 @@ import { ConsultorioService } from 'src/app/services/consultorio.service';
 export class AgendarComponent implements OnInit {
   cargando = false;
   paciente: any = [];
+  especialidades: any = [
+    { id: 'Cardiología', nombre: 'Cardiología' },
+    { id: 'Pediatría', nombre: 'Pediatría' },
+    { id: 'Fisioterapia', nombre: 'Fisioterapia' },
+    { id: 'Nutrición', nombre: 'Nutrición' },
+    { id: 'Odontología', nombre: 'Odontología' }
+  ];
+  consultorio: any = [
+    { id: '1', nombre: '1' },
+    { id: '2', nombre: '2' },
+    { id: '3', nombre: '3' },
+    { id: '4', nombre: '4' },
+    { id: '5', nombre: '5' },
+  ]
   constructor(private fb: FormBuilder, private consultorioService: ConsultorioService, private toastr: ToastrService) { }
 
   buscarPacienteForm: FormGroup = this.fb.group({
@@ -37,6 +51,7 @@ export class AgendarComponent implements OnInit {
       }
     }, error => {
       this.toastr.error(`${error.error.mensaje}`, '¡ERROR!');
+      this.cargando = false;
     }
     )
   }
