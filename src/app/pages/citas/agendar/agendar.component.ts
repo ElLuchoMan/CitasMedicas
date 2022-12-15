@@ -14,7 +14,7 @@ export class AgendarComponent implements OnInit {
   paciente: any = [];
   especialidades: any = [];
   consultorio: any = [];
-  sedes: any = [ ];
+  sedes: any = [];
   constructor(private fb: FormBuilder, private consultorioService: ConsultorioService, private toastr: ToastrService) { }
 
   buscarPacienteForm: FormGroup = this.fb.group({
@@ -33,17 +33,17 @@ export class AgendarComponent implements OnInit {
     this.consultarConsultorio();
     this.consultarEspecialidad();
   }
-  consultarSedes(){
+  consultarSedes() {
     this.consultorioService.buscarSedes().forEach(data => {
       this.sedes = data;
     })
   }
-  consultarConsultorio(){
+  consultarConsultorio() {
     this.consultorioService.buscarConsultorios().forEach(data => {
       this.consultorio = data;
     })
   }
-  consultarEspecialidad(){
+  consultarEspecialidad() {
     this.consultorioService.buscarEspecialidades().forEach(data => {
       this.especialidades = data;
     })
@@ -53,6 +53,7 @@ export class AgendarComponent implements OnInit {
     this.consultorioService.buscarPaciente(this.buscarPacienteForm.value.documento).subscribe((data) => {
       if (data != null) {
         this.paciente = data;
+        console.log(this.paciente);
         this.cargando = false;
       }
     }, error => {
@@ -67,7 +68,7 @@ export class AgendarComponent implements OnInit {
       fechaCita: this.crearCitaForm.get('fechaCita')?.value,
       horaCita: this.crearCitaForm.get('horaCita')?.value,
       tipoCita: this.crearCitaForm.get('tipoCita')?.value,
-      consultorio:null,
+      consultorio: null ,
       idSede: this.crearCitaForm.get('sede')?.value,
       paciente: this.paciente,
       copago: 12500,

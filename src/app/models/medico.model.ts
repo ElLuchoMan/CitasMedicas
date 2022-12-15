@@ -13,7 +13,7 @@ export interface  Medico {
     registroMedico: string;
     email: string;
     sexo: number;
-    consultorio: number|null;
+    consultorio: Consultorio|null;
     sede:number;
   }
   

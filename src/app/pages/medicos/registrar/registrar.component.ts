@@ -18,9 +18,9 @@ export class RegistrarComponent implements OnInit {
     { id: 'PE', nombre: 'Permiso especial de permanencia' },
     { id: 'TI', nombre: 'Tarjeta de identidad' }
   ];
-  especialidades: any = [ ];
+  especialidades: any = [];
   sedes: any = [];
-  consultorio:any=[];
+  consultorio: any = [];
   constructor(private fb: FormBuilder, private router: Router, private consultorioService: ConsultorioService, private toastr: ToastrService) { }
   registroMedicosForm: FormGroup = this.fb.group({
     nombre: [''],
@@ -44,18 +44,18 @@ export class RegistrarComponent implements OnInit {
     this.consultarEspecialidad();
 
   }
-  consultarSedes(){
+  consultarSedes() {
     this.consultorioService.buscarSedes().forEach(data => {
       this.sedes = data;
     })
   }
 
-  consultarConsultorio(){
+  consultarConsultorio() {
     this.consultorioService.buscarConsultorios().forEach(data => {
       this.consultorio = data;
     })
   }
-  consultarEspecialidad(){
+  consultarEspecialidad() {
     this.consultorioService.buscarEspecialidades().forEach(data => {
       this.especialidades = data;
     })
@@ -75,8 +75,8 @@ export class RegistrarComponent implements OnInit {
       especialidad: this.registroMedicosForm.get('especialidad')?.value,
       registroMedico: this.registroMedicosForm.get('registro')?.value,
       sede: this.registroMedicosForm.get('sede')?.value,
-      consultorio: null, 
-  }
+      consultorio: null,
+    }
     console.log(medico);
     this.consultorioService.crearMedicos(medico).subscribe(
       (data) => {

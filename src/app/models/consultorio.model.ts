@@ -3,6 +3,6 @@ import { Sede } from "./sede.model";
 
 export interface Consultorio {
     idConsultorio: number |null;
-    sede: Sede
-    especialidad: Especialidad
+    idSede: Sede | number|null;
+    idEspecialidad: Especialidad | number  |null;
 }

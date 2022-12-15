@@ -7,7 +7,7 @@ export interface Cita {
     fechaCita: Date;
     horaCita: string;
     tipoCita: string;
-    consultorio: number | null;
+    consultorio: number| null;
     idSede: number;
     paciente: Paciente;
     copago: number;
