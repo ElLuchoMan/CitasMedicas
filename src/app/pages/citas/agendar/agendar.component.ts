@@ -12,20 +12,9 @@ import { ConsultorioService } from 'src/app/services/consultorio.service';
 export class AgendarComponent implements OnInit {
   cargando = false;
   paciente: any = [];
-  especialidades: any = [
-    { id: 'Cardiología', nombre: 'Cardiología' },
-    { id: 'Pediatría', nombre: 'Pediatría' },
-    { id: 'Fisioterapia', nombre: 'Fisioterapia' },
-    { id: 'Nutrición', nombre: 'Nutrición' },
-    { id: 'Odontología', nombre: 'Odontología' }
-  ];
-  consultorio: any = [
-    { id: '1', nombre: '1' },
-    { id: '2', nombre: '2' },
-    { id: '3', nombre: '3' },
-    { id: '4', nombre: '4' },
-    { id: '5', nombre: '5' },
-  ]
+  especialidades: any = [];
+  consultorio: any = [];
+  sedes: any = [ ];
   constructor(private fb: FormBuilder, private consultorioService: ConsultorioService, private toastr: ToastrService) { }
 
   buscarPacienteForm: FormGroup = this.fb.group({
@@ -40,13 +29,30 @@ export class AgendarComponent implements OnInit {
     sede: ['',],
   });
   ngOnInit(): void {
+    this.consultarSedes();
+    this.consultarConsultorio();
+    this.consultarEspecialidad();
+  }
+  consultarSedes(){
+    this.consultorioService.buscarSedes().forEach(data => {
+      this.sedes = data;
+    })
+  }
+  consultarConsultorio(){
+    this.consultorioService.buscarConsultorios().forEach(data => {
+      this.consultorio = data;
+    })
+  }
+  consultarEspecialidad(){
+    this.consultorioService.buscarEspecialidades().forEach(data => {
+      this.especialidades = data;
+    })
   }
   buscarPaciente() {
     this.cargando = true;
     this.consultorioService.buscarPaciente(this.buscarPacienteForm.value.documento).subscribe((data) => {
       if (data != null) {
         this.paciente = data;
-        console.log(this.paciente);
         this.cargando = false;
       }
     }, error => {
@@ -61,20 +67,20 @@ export class AgendarComponent implements OnInit {
       fechaCita: this.crearCitaForm.get('fechaCita')?.value,
       horaCita: this.crearCitaForm.get('horaCita')?.value,
       tipoCita: this.crearCitaForm.get('tipoCita')?.value,
-      consultorio: this.crearCitaForm.get('consultorio')?.value,
-      sede: this.crearCitaForm.get('sede')?.value,
-      paciente: this.paciente.idPaciente,
+      consultorio:null,
+      idSede: 1,
+      paciente: this.paciente,
       copago: 12500,
     }
     console.log(cita);
-    // this.consultorioService.crearCita(cita).subscribe((data) => {
-    //   if (data != null) {
+    this.consultorioService.crearCita(cita).subscribe((data) => {
+      if (data != null) {
 
-    //     this.toastr.success(`Cita creada correctamente`, '¡ÉXITO!');
-    //   }
-    // },
-    //   error => {
-    //     this.toastr.error(`${error.error.mensaje}`, '¡ERROR!');
-    //   });
+        this.toastr.success(`Cita creada correctamente`, '¡ÉXITO!');
+      }
+    },
+      error => {
+        this.toastr.error(`${error.error.mensaje}`, '¡ERROR!');
+      });
   }
 }

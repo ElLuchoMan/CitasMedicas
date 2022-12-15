@@ -1,15 +1,15 @@
-import { Consultario } from "./consultorio.model";
+import { Consultorio } from "./consultorio.model";
 import { Paciente } from "./paciente.model";
 import { Sede } from "./sede.model";
 
 export interface Cita {
-    idCita: number;
+    idCita: number | null;
     fechaCita: Date;
     horaCita: string;
     tipoCita: string;
-    consultorio: Consultario;
-    sede: Sede
-    paciente: Paciente
+    consultorio: number | null;
+    idSede: number;
+    paciente: Paciente;
     copago: number;
 
 }

@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { Paciente } from '../models/paciente.model';
 import { Medico } from '../models/medico.model';
 import { Cita } from '../models/cita.model';
+import { Consultorio } from '../models/consultorio.model';
+import { Especialidad } from '../models/especialidad.model';
+import { Sede } from '../models/sede.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,5 +29,15 @@ export class ConsultorioService {
 
   crearCita(cita: Cita): Observable<Cita> {
     return this.httpClient.post<Cita>(this.baseUrl + 'citas/nuevo', cita);
+  }
+
+  buscarConsultorios(): Observable<Consultorio> {
+    return this.httpClient.get<Consultorio>(this.baseUrl + 'consultorio/');
+  }
+  buscarEspecialidades(): Observable<Especialidad> {
+    return this.httpClient.get<Especialidad>(this.baseUrl + 'especialidad/');
+  }
+  buscarSedes(): Observable<Sede> {
+    return this.httpClient.get<Sede>(this.baseUrl + 'sede/');
   }
 }

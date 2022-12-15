@@ -18,26 +18,9 @@ export class RegistrarComponent implements OnInit {
     { id: 'PE', nombre: 'Permiso especial de permanencia' },
     { id: 'TI', nombre: 'Tarjeta de identidad' }
   ];
-  especialidades: any = [
-    { id: 'Cardiología', nombre: 'Cardiología' },
-    { id: 'Pediatría', nombre: 'Pediatría' },
-    { id: 'Fisioterapia', nombre: 'Fisioterapia' },
-    { id: 'Nutrición', nombre: 'Nutrición' },
-    { id: 'Odontología', nombre: 'Odontología' }
-  ];
-  sedes: any = [
-    { id: 'Centro', nombre: 'Centro' },
-    { id: 'Sur', nombre: 'Sur' },
-    { id: 'Norte', nombre: 'Norte' },
-    { id: 'Occidente', nombre: 'Occidente' },
-  ]
-  consultorio:any=[
-    {id:'1',nombre:'1'},
-    {id:'2',nombre:'2'},
-    {id:'3',nombre:'3'},
-    {id:'4',nombre:'4'},
-    {id:'5',nombre:'5'},
-  ]
+  especialidades: any = [ ];
+  sedes: any = [];
+  consultorio:any=[];
   constructor(private fb: FormBuilder, private router: Router, private consultorioService: ConsultorioService, private toastr: ToastrService) { }
   registroMedicosForm: FormGroup = this.fb.group({
     nombre: [''],
@@ -56,6 +39,26 @@ export class RegistrarComponent implements OnInit {
 
   });
   ngOnInit(): void {
+    this.consultarConsultorio();
+    this.consultarSedes();
+    this.consultarEspecialidad();
+
+  }
+  consultarSedes(){
+    this.consultorioService.buscarSedes().forEach(data => {
+      this.sedes = data;
+    })
+  }
+
+  consultarConsultorio(){
+    this.consultorioService.buscarConsultorios().forEach(data => {
+      this.consultorio = data;
+    })
+  }
+  consultarEspecialidad(){
+    this.consultorioService.buscarEspecialidades().forEach(data => {
+      this.especialidades = data;
+    })
   }
 
   registrarPaciente() {
@@ -63,28 +66,28 @@ export class RegistrarComponent implements OnInit {
       nombre: this.registroMedicosForm.get('nombre')?.value,
       apellido: this.registroMedicosForm.get('apellido')?.value,
       tipoDocumento: this.registroMedicosForm.get('tipoDocumento')?.value,
-      identificacion: this.registroMedicosForm.get('documento')?.value,
+      identificacion: this.registroMedicosForm.get('identificacion')?.value,
       telefono: this.registroMedicosForm.get('telefono')?.value,
       celular: this.registroMedicosForm.get('celular')?.value,
       fechaNacimiento: this.registroMedicosForm.get('fechaNacimiento')?.value,
       email: this.registroMedicosForm.get('email')?.value,
       sexo: this.registroMedicosForm.get('sexo')?.value,
       especialidad: this.registroMedicosForm.get('especialidad')?.value,
-      registro: this.registroMedicosForm.get('registro')?.value,
-      consultorio: this.registroMedicosForm.get('consultorio')?.value,
+      registroMedico: this.registroMedicosForm.get('registro')?.value,
       sede: this.registroMedicosForm.get('sede')?.value,
-    }
+      consultorio: null, 
+  }
     console.log(medico);
-    // this.consultorioService.crearMedicos(medico).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //     this.router.navigate(['/pacientes/registrar']);
-    //     this.toastr.success(`Se ha registrado al medico ${medico.nombre}`, '¡HECHO!');
-    //     // this.registroMedicosForm.reset();
-    //   },
-    //   (error) => {
-    //     this.toastr.error(`No se ha podido registrar el medico ${medico.nombre}. ${error.error.mensaje}`, '¡ERROR!')
-    //   }
-    // );
+    this.consultorioService.crearMedicos(medico).subscribe(
+      (data) => {
+        console.log(data);
+        this.router.navigate(['/medicos/registrar']);
+        this.toastr.success(`Se ha registrado al medico ${medico.nombre}`, '¡HECHO!');
+        // this.registroMedicosForm.reset();
+      },
+      (error) => {
+        this.toastr.error(`No se ha podido registrar el medico ${medico.nombre}. ${error.error.mensaje}`, '¡ERROR!')
+      }
+    );
   }
 }

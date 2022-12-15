@@ -1,3 +1,4 @@
+import { Consultorio } from "./consultorio.model";
 import { Sede } from "./sede.model";
 
 export interface  Medico {
@@ -9,10 +10,10 @@ export interface  Medico {
     celular: number;
     fechaNacimiento: Date;
     especialidad: string;
-    registro: string;
+    registroMedico: string;
     email: string;
     sexo: number;
-    consultorio: string;
-    sede:Sede;
+    consultorio: number|null;
+    sede:number;
   }
   

@@ -1,7 +1,7 @@
 import { Eps } from "./eps.model";
 
 export interface Sede {
-    id: number;
+    idSede: number | null;
     nombre: string;
     telefono: number;
     direccion: string;

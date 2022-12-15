@@ -9,7 +9,7 @@
                             <form class="mx-1 mx-md-4" [formGroup]="buscarPacienteForm">
                                 <div class="d-flex flex-row align-items-center mb-4">
                                     <div class="form-outline input-group flex-fill mb-0">
-                                        <input type="text" id="documento" formControlName="documento"
+                                        <input placeholder="Digita el documento del paciente" type="text" id="documento" formControlName="documento"
                                             class="form-control" />
                                         <span class=""><button class="btn btn-dark" (click)="buscarPaciente()"><i
                                                     class="fa-solid fa-magnifying-glass"></i></button></span>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <hr class="mb-4">
-                            <div *ngIf="paciente!=null">
+                            <div *ngIf="paciente.nombre!=null">
                                 <form [formGroup]="crearCitaForm">
                                     <div class="row justify-content-center mt-6">
                                         <div class="col-4 me-2 ms-2">
@@ -72,7 +72,7 @@
                                                     <div class="form-outline flex-fill mb-0">
                                                         <select class="form-select" formControlName="tipoCita">
                                                             <option *ngFor="let tipoCita of especialidades"
-                                                                value="{{tipoCita.id}}">{{tipoCita.nombre}}
+                                                                value="{{tipoCita.nombreEspecialidad}}">{{tipoCita.nombreEspecialidad}}
                                                             </option>
                                                         </select>
                                                         <label class="form-label" for="tipoCita">Tipo Cita</label>
@@ -87,7 +87,7 @@
                                                     <div class="form-outline flex-fill mb-0">
                                                         <select class="form-select" formControlName="consultorio">
                                                             <option *ngFor="let consultorio of consultorio"
-                                                                value="{{consultorio.id}}">{{consultorio.nombre}}
+                                                                value="{{consultorio.idConsultorio}}">{{consultorio.idConsultorio}}
                                                             </option>
                                                         </select>
                                                         <label class="form-label" for="consultorio">Consultorio</label>
@@ -97,6 +97,31 @@
                                         </div>
 
                                     </div>
+                                    <div class="row justify-content-center">
+
+                                        <div class="row justify-content-center mt-6">
+                                            <div class="col-4 me-2 ms-2">
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fa-solid fa-hospital fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <select class="form-select" formControlName="sede">
+                                                            <option *ngFor="let sede of sedes" value="{{sede.idSede}}">
+                                                                {{sede.nombreSede}}
+                                                            </option>
+                                                        </select>
+                                                        <label class="form-label" for="sede">Sede</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4 me-2 ms-2">
+                                                <div class="d-flex flex-row align-items-center mb-4">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>>
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-dark btn-lg" style="width: 150px;"
                                             (click)="crearCita()">Agendar</button>

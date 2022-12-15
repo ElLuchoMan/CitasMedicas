@@ -49,7 +49,7 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <select class="form-select" formControlName="especialidad">
                                                 <option *ngFor="let especialidades of especialidades"
-                                                    value="{{especialidades.id}}">{{especialidades.nombre}}</option>
+                                                    value="{{especialidades.idEspecialidad}}">{{especialidades.nombreEspecialidad}}</option>
                                             </select>
                                             <label class="form-label" for="especialidades">Especialidad</label>
                                         </div>
@@ -101,7 +101,7 @@
                                         <i class="fa-solid fa-hospital fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <select class="form-select" formControlName="sede">
-                                                <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nombre}}
+                                                <option *ngFor="let sede of sedes" value="{{sede.idSede}}">{{sede.nombreSede}}
                                                 </option>
                                             </select>
                                             <label class="form-label" for="sede">Sede</label>
@@ -112,7 +112,7 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <select class="form-select" formControlName="consultorio">
                                                 <option *ngFor="let consultorio of consultorio"
-                                                    value="{{consultorio.id}}">{{consultorio.nombre}}</option>
+                                                    value="{{consultorio.idConsultorio}}">{{consultorio.idConsultorio}}</option>
                                             </select>
                                             <label class="form-label" for="consultorio">Consultorio</label>
                                         </div>

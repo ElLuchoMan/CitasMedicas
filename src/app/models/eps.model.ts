@@ -1,4 +1,4 @@
 export interface Eps {
-    id: number;
+    id: number|null;
     nombre: string;
 }

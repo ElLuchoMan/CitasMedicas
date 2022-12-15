@@ -1,5 +1,5 @@
 export interface Especialidad {
-    idEspecialidad: number;
+    idEspecialidad: number | null;
     nombreEspecialidad: string;
     idEquipo: number;
 }
