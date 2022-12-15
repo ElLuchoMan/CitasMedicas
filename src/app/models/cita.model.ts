@@ -1,5 +1,5 @@
 import { Consultario } from "./consultorio.model";
-import { Medico } from "./medico.model";
+import { Paciente } from "./paciente.model";
 import { Sede } from "./sede.model";
 
 export interface Cita {
@@ -9,6 +9,7 @@ export interface Cita {
     tipoCita: string;
     consultorio: Consultario;
     sede: Sede
-    medico: Medico
+    paciente: Paciente
     copago: number;
+
 }
