@@ -68,7 +68,7 @@ export class AgendarComponent implements OnInit {
       horaCita: this.crearCitaForm.get('horaCita')?.value,
       tipoCita: this.crearCitaForm.get('tipoCita')?.value,
       consultorio:null,
-      idSede: 1,
+      idSede: this.crearCitaForm.get('sede')?.value,
       paciente: this.paciente,
       copago: 12500,
     }
